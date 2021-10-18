@@ -1,0 +1,322 @@
+{
+  "products": [
+    {
+      "product_name": "Samsung Galaxy Note 20 Ultra",
+      "sale_product_price": 20000000,
+      "product_price": 25000000,
+      "url": "https://cellphones.com.vn/samsung-galaxy-note-20-ultra-5g.html",
+      "image_url": "https://cdn.cellphones.com.vn/media/catalog/product/cache/7/image/9df78eab33525d08d6e5fb8d27136e95/y/e/yellow_final_2.jpg",
+      "rating": 4.9,
+      "createdAt": 1629105800849,
+      "id": 1
+    },
+    {
+      "product_name": "Xiaomi Redmi Note 10",
+      "sale_product_price": 20000000,
+      "product_price": 25000000,
+      "url": "https://cellphones.com.vn/xiaomi-redmi-note-10-pro.html",
+      "image_url": "https://cdn.cellphones.com.vn/media/catalog/product/cache/7/image/9df78eab33525d08d6e5fb8d27136e95/x/i/xiaomi-redmi-note-10-pro_2_.png",
+      "rating": 4.9,
+      "createdAt": 1629105801776,
+      "id": 2
+    },
+    {
+      "product_name": "Macbook Pro 2020",
+      "sale_product_price": 20000000,
+      "product_price": 25000000,
+      "url": "https://cellphones.com.vn/macbook-pro-2020-13-inch-touch-bar-m1.html",
+      "image_url": "https://cdn.cellphones.com.vn/media/catalog/product/cache/7/image/9df78eab33525d08d6e5fb8d27136e95/m/b/mbp-silver-select-202011.jpg",
+      "rating": 4.9,
+      "createdAt": 1629105802405,
+      "id": 3
+    },
+    {
+      "product_name": "Iphone 12",
+      "sale_product_price": 20000000,
+      "product_price": 25000000,
+      "url": "https://cellphones.com.vn/man-hinh-lg-gaming-27-inch-27mp60g.html",
+      "image_url": "https://cdn.cellphones.com.vn/media/catalog/product/cache/7/image/9df78eab33525d08d6e5fb8d27136e95/m/a/man-hinh-lg-gaming-27-inch-27mp60g-1.png",
+      "rating": 4.9,
+      "createdAt": 1629105802880,
+      "id": 4
+    }
+  ],
+  "items_in_cart": [
+    {
+      "product_name": "Macbook Pro 2020",
+      "sale_product_price": 20000000,
+      "product_price": 25000000,
+      "color": "Đen",
+      "color_option": [
+        {
+          "value": "Đen",
+          "text": "Màu sắc: Đen"
+        },
+        {
+          "value": "Đỏ",
+          "text": "Màu sắc: Đỏ"
+        },
+        {
+          "value": "Xanh",
+          "text": "Màu sắc: Xanh"
+        }
+      ],
+      "url": "https://cellphones.com.vn/macbook-pro-2020-13-inch-touch-bar-m1.html",
+      "image_url": "https://cdn.cellphones.com.vn/media/catalog/product/cache/7/image/9df78eab33525d08d6e5fb8d27136e95/m/b/mbp-silver-select-202011.jpg",
+      "createdAt": 1629105802405,
+      "id": 3
+    },
+    {
+      "product_name": "Apple iPhone 12 Pro Max",
+      "sale_product_price": 20000000,
+      "product_price": 25000000,
+      "color": "Đen",
+      "color_option": [
+        {
+          "value": "Đen",
+          "text": "Màu sắc: Đen"
+        },
+        {
+          "value": "Đỏ",
+          "text": "Màu sắc: Đỏ"
+        },
+        {
+          "value": "Xanh",
+          "text": "Màu sắc: Xanh"
+        }
+      ],
+      "url": "https://cellphones.com.vn/macbook-pro-2020-13-inch-touch-bar-m1.html",
+      "image_url": "https://cdn.cellphones.com.vn/media/catalog/product/cache/7/thumbnail/220x175/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-12-pro-max_1__7_1.jpg",
+      "createdAt": 1629105802405,
+      "id": 3
+    }
+  ],
+  "city": [
+    {
+      "value": "hcm",
+      "text": "Hồ Chí Minh"
+    },
+    {
+      "value": "hn",
+      "text": "Hà Nội"
+    },
+    {
+      "value": "bd",
+      "text": "Bình Dương"
+    }
+  ],
+  "district": [
+    {
+      "value": "",
+      "text": "Chọn Quận / Huyện"
+    },
+    {
+      "value": "q1",
+      "text": "Quận 1"
+    },
+    {
+      "value": "q2",
+      "text": "Quận 2"
+    },
+    {
+      "value": "q3",
+      "text": "Quận 3"
+    },
+    {
+      "value": "q4",
+      "text": "Quận 4"
+    },
+    {
+      "value": "q5",
+      "text": "Quận 5"
+    }
+  ],
+  "city_real": [
+    {
+      "id": "1",
+      "name": "H\u1ed3 Ch\u00ed Minh",
+      "store_id": "7",
+      "area_id": "7"
+    },
+    {
+      "id": "4",
+      "name": "B\u00ecnh D\u01b0\u01a1ng",
+      "store_id": "8",
+      "area_id": "7"
+    },
+    {
+      "id": "5",
+      "name": "\u0110\u1ed3ng Nai",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "6",
+      "name": "Kh\u00e1nh H\u00f2a",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "8",
+      "name": "Long An",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "9",
+      "name": "Qu\u1ea3ng Nam",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "10",
+      "name": "V\u0169ng T\u00e0u",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "11",
+      "name": "\u0110\u1eafk L\u1eafk",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "12",
+      "name": "C\u1ea7n Th\u01a1",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "13",
+      "name": "B\u00ecnh Thu\u1eadn",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "14",
+      "name": "L\u00e2m \u0110\u1ed3ng",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "16",
+      "name": "Ki\u00ean Giang",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "22",
+      "name": "Gia Lai",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "23",
+      "name": "B\u00ecnh Ph\u01b0\u1edbc",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "25",
+      "name": "B\u00ecnh \u0110\u1ecbnh",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "26",
+      "name": "Ti\u1ec1n Giang",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "30",
+      "name": "An Giang",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "32",
+      "name": "T\u00e2y Ninh",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "36",
+      "name": "Qu\u1ea3ng Ng\u00e3i",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "37",
+      "name": "B\u1ebfn Tre",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "38",
+      "name": "\u0110\u1eafk N\u00f4ng",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "39",
+      "name": "C\u00e0 Mau",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "40",
+      "name": "V\u0129nh Long",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "43",
+      "name": "Ninh Thu\u1eadn",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "44",
+      "name": "Ph\u00fa Y\u00ean",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "47",
+      "name": "\u0110\u1ed3ng Th\u00e1p",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "48",
+      "name": "S\u00f3c Tr\u0103ng",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "49",
+      "name": "KonTum",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "52",
+      "name": "Tr\u00e0 Vinh",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "53",
+      "name": "H\u1eadu Giang",
+      "store_id": "0",
+      "area_id": "7"
+    },
+    {
+      "id": "55",
+      "name": "B\u1ea1c Li\u00eau",
+      "store_id": "0",
+      "area_id": "7"
+    }
+  ]
+}
