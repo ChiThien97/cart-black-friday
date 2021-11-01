@@ -1,5 +1,5 @@
 <template>
-  <div class="bottom-bar container mt-2 block-box">
+  <div v-if="ItemQuoteCounter()" class="bottom-bar container mt-2 block-box">
     <div class="total-box d-flex justify-content-between align-items-start">
       <p class="title-temp">Tổng tiền tạm tính:</p>
       <div class="price d-flex flex-column align-items-end">
@@ -16,14 +16,10 @@
 </template>
 <script>
 import {Currency} from "~/_helper/number/currency";
+import {mapActions, mapGetters, mapState} from "vuex";
 
 export default {
   name: "BottomBar",
-  data() {
-    return {
-      total: 26900000
-    }
-  },
   props: {
     'actionText': {
       type: String,
@@ -35,11 +31,17 @@ export default {
     }
   },
   computed: {
+    ...mapState('product', ['products']),
+    ...mapGetters('product', ['ItemQuoteCounter']),
     formatTotal() {
-      return Currency.format(this.total)
+      return Currency.format(this.products.grand_total_without_smember)
     }
   },
+  async mounted() {
+    await this.getProductFromQuote(3)
+  },
   methods: {
+    ...mapActions('product', ['getProductFromQuote']),
     goContinue() {
       this.$router.push(this.href)
     }

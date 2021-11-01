@@ -39,6 +39,9 @@ export default {
     // https://github.com/nuxt-community/device-module
     '@nuxtjs/device',
   ],
+  env: {
+    cartServer: process.env.CART_SEVER,
+  },
 
   fontawesome: {
     icons: {
@@ -66,7 +69,8 @@ export default {
         'faShoppingCart',
         'faAddressCard',
         'faBoxOpen',
-        'faQuestionCircle'
+        'faQuestionCircle',
+        'faFrown'
       ]
     }
   },
@@ -75,6 +79,9 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
+
+    // https://go.nuxtjs.dev/axios
+    '@nuxtjs/axios',
 
     'cookie-universal-nuxt'
   ],

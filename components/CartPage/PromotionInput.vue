@@ -1,5 +1,6 @@
 <template>
-  <div class="block-promotion-input d-flex justify-content-between align-items-center mb-3 block-box">
+  <div v-if="ItemQuoteCounter()"
+       class="block-promotion-input d-flex justify-content-between align-items-center mb-3 block-box">
     <input type="text" placeholder="Nhập mã giảm giá">
     <button class="btn btn-danger">Áp dụng</button>
     <svg id="icon-voucher" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -24,12 +25,23 @@
         c0-27.619,22.468-50.087,50.087-50.087s50.087,22.468,50.087,50.087C445.217,350.402,422.75,372.87,395.13,372.87z"/>
 
     </svg>
-
   </div>
 </template>
 <script>
+import {mapActions, mapState, mapGetters} from "vuex";
+
 export default {
   name: 'PromotionInput',
+  computed: {
+    ...mapState('product', ['products']),
+    ...mapGetters('product', ['ItemQuoteCounter'])
+  },
+  async mounted() {
+    await this.getProductFromQuote(3)
+  },
+  methods: {
+    ...mapActions('product', ['getProductFromQuote'])
+  }
 }
 </script>
 <style scoped lang="scss">

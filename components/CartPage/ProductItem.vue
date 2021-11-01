@@ -12,45 +12,44 @@
           <span class="onsale">Giảm {{ percentDiscount }}%</span>
         </div>
         <div class="item-action mt-2">
-          <div class="change-color">
-            <b-form-select v-model="selected" :options="options"></b-form-select>
-          </div>
           <div class="change-quantity d-flex align-items-end mt-2">
             <p>Chọn số lượng:</p>
-            <button class="btn-delete">
-              <font-awesome-icon icon='trash-alt'/>
-            </button>
             <div class="number d-flex">
               <span @click="minusQuantity()" class="minus d-flex justify-content-center align-items-center">-</span>
-              <input type="text" :value="quantity"/>
+              <input type="text" :value="productQty" readonly/>
               <span @click="plusQuantity()" class="plus d-flex justify-content-center align-items-center">+</span>
             </div>
           </div>
         </div>
+        <div v-if="productHeavyFee" class="product-item__heavy-fee mt-2"><i>Phí giao hàng cồng kềnh:</i> <strong>{{
+            formatProductHeavyfee
+          }}</strong>
+        </div>
       </div>
     </div>
 
-    <div class="check-item">
-      <input type="checkbox" :checked="isCheck">
-    </div>
-    <div class="delete-item">
+    <div @click="deleteItem()" class="delete-item">
       <font-awesome-icon icon='times'/>
     </div>
   </div>
 </template>
 <script>
 import {Currency} from "~/_helper/number/currency";
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: 'ProductItem',
   data() {
     return {
-      selected: '',
-      options: [],
-      quantity: 1,
+      productID: this.productId,
+      productQty: this.productQuantity
     }
   },
   props: {
+    'productId': {
+      type: Number,
+      default: null
+    },
     'productName': {
       type: String,
       default: null
@@ -63,45 +62,54 @@ export default {
       type: Number,
       default: null
     },
+    'productHeavyFee': {
+      type: Number,
+      default: null
+    },
+    'productQuantity': {
+      type: Number,
+      default: null
+    },
     'imageUrl': {
       type: String,
       default: null
-    },
-    'color': {
-      type: String,
-      default: null
-    },
-    'colorSelect': [],
-    'isCheck': {
-      type: Boolean,
-      default: false
     }
   },
-  created() {
-    this.selected = this.color
-    this.colorSelect.forEach(value => {
-      this.options.push(value)
-    })
-  },
   computed: {
+    ...mapState('product', ['products']),
     formatProductPrice() {
       return Currency.format(this.productPrice)
     },
     formatProductSalePrice() {
       return Currency.format(this.productSalePrice)
     },
+    formatProductHeavyfee() {
+      return Currency.format(this.productHeavyFee)
+    },
     percentDiscount() {
       return (100 - this.productSalePrice * (100 / this.productPrice)).toFixed(0)
     },
   },
   methods: {
-    plusQuantity() {
-      if (this.quantity < 3)
-        this.quantity++;
+    ...mapActions('product', ['updateItemQuantity', 'deleteItemInQuote']),
+    async plusQuantity() {
+      if (this.productQty < 3) {
+        this.productQty++;
+        await this.updateItemQuantity({id: this.products.ID, itemId: this.productId, itemQuantity: this.productQty});
+      } else {
+        alert('Số lượng sản phẩm đã đạt mức tối đa')
+      }
     },
-    minusQuantity() {
-      if (this.quantity > 1)
-        this.quantity--;
+    async minusQuantity() {
+      if (this.productQty > 1) {
+        this.productQty--;
+        await this.updateItemQuantity({id: this.products.ID, itemId: this.productId, itemQuantity: this.productQty});
+      } else {
+        alert('Số lượng sản phẩm đã giảm đến mức tối thiểu')
+      }
+    },
+    async deleteItem() {
+      await this.deleteItemInQuote({id: this.products.ID, itemId: this.productId})
     }
   }
 }
@@ -110,48 +118,11 @@ export default {
 .product-item {
   padding: 10px 20px 10px 30px;
 
-  .check-item {
-    position: absolute;
-    top: 50%;
-    left: 20px;
-    transform: translate(-50%, -50%);
-
-    > input {
-      -webkit-appearance: none;
-      background-color: #fafafa;
-      border: 1px solid #cacece;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
-      padding: 9px;
-      border-radius: 3px;
-      display: inline-block;
-      position: relative;
-
-      &:checked {
-        background-color: #e9ecee;
-        border: 1px solid #adb8c0;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05), inset 15px 10px -12px rgba(255, 255, 255, 0.1);
-        color: #99a1a7;
-
-        &:after {
-          content: '\2713';
-          font-size: 14px;
-          position: absolute;
-          top: 0px;
-          left: 3px;
-          color: #99a1a7;
-        }
-
-        &:active {
-          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px 1px 3px rgba(0, 0, 0, 0.1);
-        }
-      }
-    }
-  }
-
   .delete-item {
     position: absolute;
     top: 5px;
     right: 10px;
+    cursor: pointer;
 
     svg {
       font-size: 20px;
@@ -208,15 +179,6 @@ export default {
         }
 
         .change-quantity {
-          .btn-delete {
-            border-radius: 5px;
-            font-size: 12px;
-            border: 1px solid #cacece;
-            background: #FFFFFF;
-            color: #AAA;
-            margin-left: 5px;
-            height: 25px;
-          }
 
           span {
             cursor: pointer;
@@ -256,6 +218,12 @@ export default {
               border-radius: 0;
             }
           }
+        }
+      }
+
+      .product-item__heavy-fee {
+        span {
+
         }
       }
     }
