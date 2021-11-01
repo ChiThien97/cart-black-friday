@@ -28,7 +28,7 @@
   </div>
 </template>
 <script>
-import {mapActions, mapState, mapGetters} from "vuex";
+import {mapState, mapGetters} from "vuex";
 
 export default {
   name: 'PromotionInput',
@@ -37,11 +37,9 @@ export default {
     ...mapGetters('product', ['ItemQuoteCounter'])
   },
   async mounted() {
-    await this.getProductFromQuote(3)
+
   },
-  methods: {
-    ...mapActions('product', ['getProductFromQuote'])
-  }
+  methods: {}
 }
 </script>
 <style scoped lang="scss">

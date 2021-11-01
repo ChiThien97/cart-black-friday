@@ -38,7 +38,7 @@ export default {
     }
   },
   async mounted() {
-    await this.getProductFromQuote(3)
+    await this.getProductFromQuote(6)
   },
   methods: {
     ...mapActions('product', ['getProductFromQuote']),

@@ -15,6 +15,7 @@
       <p class="mb-2">Chọn địa chỉ để biết thời gian nhận hàng và phí vận chuyển (nếu có)</p>
       <div class="d-flex">
         <b-form-select v-model="city.selected" :options="city.options" class="mr-1"></b-form-select>
+        <b-form-select v-model="city.selected" :options="city.options" class="mr-1"></b-form-select>
         <b-form-select v-model="district.selected" :options="district.options" class="ml-1"></b-form-select>
       </div>
       <input class="mt-2" id="address" name="address" type="text" placeholder="Số nhà, tên đường">

@@ -21,7 +21,7 @@
 <script>
 import ProductItem from "./ProductItem"
 import ItemsInCart from "~/_helper/dbjson/db.json"
-import {mapActions, mapGetters, mapState} from "vuex";
+import {mapGetters, mapState} from "vuex";
 
 export default {
   name: 'BlockItemsInCart',
@@ -33,11 +33,9 @@ export default {
     ...mapGetters('product', ['ItemQuoteCounter'])
   },
   async mounted() {
-    await this.getProductFromQuote(3)
+
   },
-  methods: {
-    ...mapActions('product', ['getProductFromQuote'])
-  }
+  methods: {}
 }
 </script>
 <style scoped lang="scss">
