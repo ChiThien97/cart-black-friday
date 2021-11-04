@@ -76,7 +76,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('product', ['products']),
+    ...mapState('quote', ['quote']),
     formatProductPrice() {
       return Currency.format(this.productPrice)
     },
@@ -89,13 +89,16 @@ export default {
     percentDiscount() {
       return (100 - this.productSalePrice * (100 / this.productPrice)).toFixed(0)
     },
+    calculatorGrandtotal() {
+      this.quote.grand_total_without_smember
+    }
   },
   methods: {
-    ...mapActions('product', ['updateItemQuantity', 'deleteItemInQuote']),
+    ...mapActions('quote', ['updateItemQuantity', 'deleteItemInQuote']),
     async plusQuantity() {
       if (this.productQty < 3) {
         this.productQty++;
-        await this.updateItemQuantity({id: this.products.ID, itemId: this.productId, itemQuantity: this.productQty});
+        await this.updateItemQuantity({id: this.quote.ID, itemId: this.productId, itemQuantity: this.productQty});
       } else {
         alert('Số lượng sản phẩm đã đạt mức tối đa')
       }
@@ -103,13 +106,13 @@ export default {
     async minusQuantity() {
       if (this.productQty > 1) {
         this.productQty--;
-        await this.updateItemQuantity({id: this.products.ID, itemId: this.productId, itemQuantity: this.productQty});
+        await this.updateItemQuantity({id: this.quote.ID, itemId: this.productId, itemQuantity: this.productQty});
       } else {
         alert('Số lượng sản phẩm đã giảm đến mức tối thiểu')
       }
     },
     async deleteItem() {
-      await this.deleteItemInQuote({id: this.products.ID, itemId: this.productId})
+      await this.deleteItemInQuote({id: this.quote.ID, itemId: this.productId})
     }
   }
 }
@@ -216,6 +219,7 @@ export default {
               border-left: 0;
               border-right: 0;
               border-radius: 0;
+              padding: 0;
             }
           }
         }

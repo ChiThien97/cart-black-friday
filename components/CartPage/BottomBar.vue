@@ -7,10 +7,14 @@
       </div>
     </div>
     <div class="btn-submit mt-2">
-      <button class="btn btn-danger d-flex flex-column justify-content-center align-items-center w-100"
+      <button class="btn btn-danger d-flex flex-column justify-content-center align-items-center w-100 mb-2"
               @click="goContinue">
         {{ actionText }}
       </button>
+      <a href="https://cellphones.com.vn"
+         class="btn btn-outline-danger d-flex flex-column justify-content-center align-items-center w-100">
+        Chọn thêm sản phẩm khác
+      </a>
     </div>
   </div>
 </template>
@@ -31,18 +35,31 @@ export default {
     }
   },
   computed: {
-    ...mapState('product', ['products']),
-    ...mapGetters('product', ['ItemQuoteCounter']),
+    ...mapState('quote', ['quote']),
+    ...mapState('order', ['order']),
+    ...mapGetters('quote', ['ItemQuoteCounter']),
     formatTotal() {
-      return Currency.format(this.products.grand_total_without_smember)
+      return Currency.format(this.quote.grand_total_without_smember)
     }
   },
   async mounted() {
-    await this.getProductFromQuote(6)
+    await this.getProductFromQuote(this.quote.ID)
   },
   methods: {
-    ...mapActions('product', ['getProductFromQuote']),
+    ...mapActions('quote', ['getProductFromQuote']),
+    ...mapActions('shippingAddress', ['updateAddressQuote']),
+    ...mapActions('order', ['createOrderByQuoteID']),
     goContinue() {
+      if (this.href === '/payment') {
+        this.updateAddressQuote(this.quote.ID).then((value) => {
+          if (value) {
+            (this.order.ID === '') ? this.createOrderByQuoteID(this.quote.ID) : ''
+          }
+
+        })
+        console.log("QUOTE_ID: " + this.quote.ID)
+      }
+
       this.$router.push(this.href)
     }
   }
@@ -63,9 +80,14 @@ export default {
     }
   }
 
-  .btn-submit .btn {
+  .btn-submit .btn.btn-danger {
     font-weight: 600;
     background-color: var(--main-color);
+    text-transform: uppercase;
+  }
+
+  .btn-submit .btn.btn-outline-danger {
+    font-weight: 600;
     text-transform: uppercase;
   }
 }

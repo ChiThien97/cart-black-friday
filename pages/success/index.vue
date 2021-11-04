@@ -3,7 +3,7 @@
     <TopBar
       title="Hoàn tất"
       close-text="Đóng"
-      href="/payment"
+      href="/"
     />
     <div class="block-info">
       <ProcessBar

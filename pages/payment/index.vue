@@ -14,13 +14,13 @@
       <div class="container block-box">
         <Information
           title="đặt hàng"
-          customer-name="Đoàn Anh Phương"
-          phone="0911646437"
-          address="350 Võ Văn Kiệt, Phường Cô Giang, Quận 1, Thành Phố Hồ Chí Minh"
-          shipping="20000"
-          total="26320000"
-          smember-level="SVIP"
-          smember-discount="50000"
+          :customer-name=order.customer_name
+          :phone=order.customer_phone
+          :address=order.shipping_address
+          :shipping=order.shipping_fee
+          :total=order.grand_total
+          :smember-level=order.customer_level
+          :smember-discount=order.smember_discount
         />
         <PaymentMethod/>
       </div>
@@ -37,6 +37,7 @@ import ProcessBar from "~/components/Payment/ProcessBar";
 import BottomBar from "~/components/CartPage/BottomBar";
 import Information from "~/components/Payment/Information"
 import PaymentMethod from "~/components/Payment/PaymentMethod";
+import {mapActions, mapState} from "vuex";
 
 export default {
   components: {
@@ -45,6 +46,16 @@ export default {
     BottomBar,
     Information,
     PaymentMethod
+  },
+  computed: {
+    ...mapState('order', ['order']),
+
+  },
+  async mounted() {
+    await this.getOrderById(this.order.ID)
+  },
+  methods: {
+    ...mapActions('order', ['getOrderById'])
   },
   layout: (ctx) => ctx.$device.isMobile ? 'default' : 'default-desktop'
 }

@@ -14,11 +14,23 @@
     <div class="address-box mt-3">
       <p class="mb-2">Chọn địa chỉ để biết thời gian nhận hàng và phí vận chuyển (nếu có)</p>
       <div class="d-flex">
-        <b-form-select v-model="city.selected" :options="city.options" class="mr-1"></b-form-select>
-        <b-form-select v-model="city.selected" :options="city.options" class="mr-1"></b-form-select>
-        <b-form-select v-model="district.selected" :options="district.options" class="ml-1"></b-form-select>
+        <select class="form-control mr-1" v-model="provinceId" @change="getDistrictsById(provinceId)">
+          <option value="0" selected>Tỉnh / Thành phố</option>
+          <option v-for="item in provinces" :key="item.id" :value="item.id">{{
+              item.type + ' ' + item.name
+            }}
+          </option>
+        </select>
+        <select class="form-control mx-1" v-model="districtId" @change="getWardsById(districtId)">
+          <option value="0" selected>Quận / Huyện</option>
+          <option v-for="item in districts" :key="item.id" :value="item.id">{{ item.type + ' ' + item.name }}</option>
+        </select>
+        <select class="form-control ml-1" v-model="wardId">
+          <option value="0" selected>Phường / Xã</option>
+          <option v-for="item in wards" :key="item.id" :value="item.id">{{ item.name }}</option>
+        </select>
       </div>
-      <input class="mt-2" id="address" name="address" type="text" placeholder="Số nhà, tên đường">
+      <input class="form-control mt-2" id="address" name="address" type="text" placeholder="Số nhà, tên đường">
     </div>
     <div class="mt-3">
       <input type="text" name="note" placeholder="Yêu cầu khác">
@@ -37,34 +49,36 @@
   </div>
 </template>
 <script>
-import address from "~/_helper/dbjson/db.json"
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: "PaymentInfo",
   data() {
     return {
-      address: address,
-      city: {
-        selected: '',
-        options: [],
-        quantity: 1,
-      },
-      district: {
-        selected: '',
-        options: [],
-        quantity: 1,
-      },
+      provinceId: "0",
+      districtId: "0",
+      wardId: "0",
     }
   },
   created() {
-    this.city.selected = "hcm"
-    this.address.city.forEach(value => {
-      this.city.options.push(value)
-    })
-    this.district.selected = ""
-    this.address.district.forEach(value => {
-      this.district.options.push(value)
-    })
+    this.getProvinces();
+  },
+  computed: {
+    ...mapState('subdivisions', ['provinces', 'districts', 'wards']),
+    ...mapState('shippingAddress', ['shippingAddress']),
+  },
+  methods: {
+    ...mapActions('subdivisions', ['getProvinces', 'getDistricts', 'getWards']),
+    ...mapActions('shippingAddress', ['updateAddressQuote']),
+    async getDistrictsById(id) {
+      this.districtId = "0"
+      this.wardId = "0"
+      await this.getDistricts(id)
+    },
+    async getWardsById(id) {
+      this.wardId = "0"
+      await this.getWards(id)
+    },
   }
 }
 </script>

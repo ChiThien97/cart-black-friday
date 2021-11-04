@@ -43,11 +43,11 @@ export default {
       default: false
     },
     shipping: {
-      type: String,
+      type: Number,
       default: null
     },
     total: {
-      type: String,
+      type: Number,
       default: null
     },
     smemberLevel: {
@@ -55,7 +55,7 @@ export default {
       default: null
     },
     smemberDiscount: {
-      type: String,
+      type: Number,
       default: null
     },
   },

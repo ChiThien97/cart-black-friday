@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ProductItem v-for='(cartItem,index) in products.quote_item' :key="index"
+    <ProductItem v-for='(cartItem,index) in quote.quote_item' :key="index"
                  :product-id="cartItem.item_id"
                  :product-name="cartItem.item_name"
                  :image-url="cartItem.image_url"
@@ -20,7 +20,6 @@
 </template>
 <script>
 import ProductItem from "./ProductItem"
-import ItemsInCart from "~/_helper/dbjson/db.json"
 import {mapGetters, mapState} from "vuex";
 
 export default {
@@ -29,8 +28,8 @@ export default {
     ProductItem
   },
   computed: {
-    ...mapState('product', ['products']),
-    ...mapGetters('product', ['ItemQuoteCounter'])
+    ...mapState('quote', ['quote']),
+    ...mapGetters('quote', ['ItemQuoteCounter'])
   },
   async mounted() {
 

@@ -33,8 +33,8 @@ import {mapState, mapGetters} from "vuex";
 export default {
   name: 'PromotionInput',
   computed: {
-    ...mapState('product', ['products']),
-    ...mapGetters('product', ['ItemQuoteCounter'])
+    ...mapState('quote', ['quote']),
+    ...mapGetters('quote', ['ItemQuoteCounter'])
   },
   async mounted() {
 
